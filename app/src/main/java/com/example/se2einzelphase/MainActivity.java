@@ -38,6 +38,20 @@ public class MainActivity extends AppCompatActivity {
         answerFromSrv = findViewById(R.id.srvr_Ans_View);
     }
 
+    //Calculating Function
+    public void calculation(View view) {
+
+        String stringInput = convertToString(userInput);
+        StringBuilder primeNumbers = new StringBuilder();
+        for(int index = 0; index < stringInput.length(); index++){
+            if(isPrime(Character.getNumericValue(stringInput.charAt(index)))){
+                primeNumbers.append(stringInput.charAt(index));
+            }
+        }
+
+       result.setText(primeNumbers.toString());
+    }
+    //----------------------------------------------------------------------------------------------
     //Sending Function
     public void sendToServer(View view) {
 
@@ -92,5 +106,24 @@ public class MainActivity extends AppCompatActivity {
 
     public String convertToString(EditText userInput){
         return userInput.getText().toString();
+    }
+    static boolean isPrime(int inputNumber) {
+        boolean isItPrime = true;
+
+        if (inputNumber <= 1) {
+            isItPrime = false;
+
+            return isItPrime;
+        } else {
+            for (int i = 2; i <= inputNumber / 2; i++) {
+                if ((inputNumber % i) == 0) {
+                    isItPrime = false;
+
+                    break;
+                }
+            }
+
+            return isItPrime;
+        }
     }
 }
